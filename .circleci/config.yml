@@ -19,5 +19,11 @@ jobs:
             Invoke-WebRequest -Uri https://aka.ms/wsl-ubuntu-1804 -OutFile Ubuntu.appx -UseBasicParsing
             Rename-Item .\Ubuntu.appx .\Ubuntu.zip
             Expand-Archive .\Ubuntu.zip .\Ubuntu
-            ubuntu config --default-user root
-            ubuntu
+            cd .\Ubuntu\
+            .\ubuntu1804.exe install --root
+            .\ubuntu1804.exe
+            git clone https://github.com/pytorch/serve.git
+            cd serve
+            echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.bashrc
+            source ~/.bashrc
+            ./torchserve_sanity.sh
