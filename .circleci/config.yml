@@ -12,8 +12,10 @@ jobs:
       - checkout
       - run: systeminfo
       - run:
-          name: "Check docker"
+          name: "Setup Ubuntu 18.04 on WSL"
           shell: powershell.exe
           command: |
-            docker info
-            docker run hello-world:nanoserver-1809
+            Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+            Invoke-WebRequest -Uri https://aka.ms/wsl-ubuntu-1804 -OutFile Ubuntu.appx -UseBasicParsing
+            Rename-Item .\Ubuntu.appx .\Ubuntu.zip
+            Expand-Archive .\Ubuntu.zip .\Ubuntu
