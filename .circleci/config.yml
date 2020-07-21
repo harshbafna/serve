@@ -13,7 +13,7 @@ jobs:
       - run: systeminfo
       - run:
           name: "Setup Ubuntu 18.04 on WSL"
-          shell: powershell.exe -Verb RunAs
+          shell: powershell.exe -Command "Start-Process PowerShell -Verb RunAs"
           no_output_timeout: 30m
           command: |
             Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
