@@ -13,8 +13,9 @@ jobs:
       - run: systeminfo
       - run:
           name: "Setup Ubuntu 18.04 on WSL"
-          shell: powershell.exe
+          shell: powershell.exe -Command "Start-Process PowerShell -Verb RunAs"
           command: |
+            Start-Process powershell -verb runAs
             Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
             Invoke-WebRequest -Uri https://aka.ms/wsl-ubuntu-1804 -OutFile Ubuntu.appx -UseBasicParsing
             Rename-Item .\Ubuntu.appx .\Ubuntu.zip
